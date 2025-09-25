@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const MaquinaModelo = sequelize.define("MaquinaModelo", {

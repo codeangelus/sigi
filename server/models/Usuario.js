@@ -1,13 +1,13 @@
-const { DataTypes }  = require("sequelize");
+import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
-const Usuario = sequelize.define( Usuario, {
-    nome_login: {
+const Usuario = sequelize.define( 'Usuario', {
+    login: {
         type: DataTypes.STRING,
         unique: true,
         allowNull:false,
     },
-    senha_hash: {
+    senha: {
         type: DataTypes.STRING,
         allowNull: false,
     },

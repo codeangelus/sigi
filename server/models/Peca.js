@@ -1,14 +1,12 @@
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 
-const MaquinaModelo = require("./MaquinaModelo");
-const MaquinaProducao = require("./MaquinaProducao");
 
 
 const Peca = sequelize.define('Peca', {
     codigo: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     nome: {
@@ -21,13 +19,12 @@ const Peca = sequelize.define('Peca', {
         type: DataTypes.STRING,
     },    
     imageUrl : {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull:      true,
         defaultValue:  null,
     },
     status : {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: DataTypes.STRING,
     },
 });
 
