@@ -4,6 +4,7 @@ import sequelize from "../config/db.js";
 
 
 
+
 const Peca = sequelize.define('Peca', {
     codigo: {
         type: DataTypes.STRING,
@@ -27,8 +28,6 @@ const Peca = sequelize.define('Peca', {
         type: DataTypes.STRING,
     },
 });
-
-
 
 
 export default Peca;

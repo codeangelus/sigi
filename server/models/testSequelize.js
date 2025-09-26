@@ -21,10 +21,14 @@ const testSequelize = async () => {
     });
 
     // Criar uma peça
-    const peca = await Peca.create({
+    const peca = await Peca.create(
+      {
       codigo: "AX-1001",
       nome: "Parafuso Inox",
-    });
+      },
+      
+  );
+    
 
     // Buscar usuário com join de perfil
     const usuarioComPerfil = await Usuario.findOne({

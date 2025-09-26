@@ -18,4 +18,4 @@ const syncDatabase = async () => {
   }
 };
 
-syncDatabase();
+export default syncDatabase();
