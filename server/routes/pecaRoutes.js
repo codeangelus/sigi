@@ -5,7 +5,9 @@ import {
   listarPecas,
   atualizarPeca,
   deletarPeca,
-  listarPorId
+  listarPorId,
+  associateToMachine,
+  associateToProduction
 } from "../controllers/pecaController.js";
 
 
@@ -25,5 +27,12 @@ router.put("/:id", atualizarPeca);
 
 // DELETE /pecas/:id → remove peça
 router.delete("/:id", deletarPeca);
+
+// POST /pecas/associar  →  associar peca a um modelo de maquina
+router.post("/associar",associateToMachine);
+
+// POST /pecas/linkar  →  associar peca a uma maquina producao
+router.post("/linkar", associateToProduction)
+
 
 export default router;

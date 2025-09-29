@@ -6,6 +6,8 @@ import express from "express";
 import pecaRoutes from "./server/routes/pecaRoutes.js";
 import dvRoutes from "./server/routes/dvRoutes.js";
 import usuarioRoutes from "./server/routes/usuarioRoutes.js"
+import maquinaRoutes from "./server/routes/maquinaRoutes.js"
+import MaquinaProducaoRoutes from "./server/routes/producaoRoutes.js"
 
 
 
@@ -17,12 +19,12 @@ app.use(express.json());
 app.use("/pecas", pecaRoutes);
 app.use("/dvs", dvRoutes);
 app.use("/users", usuarioRoutes);
-app.use("/maquinas", maquinaModeloRoutes);
+app.use("/maquinas", maquinaRoutes);
 app.use("/prod", MaquinaProducaoRoutes);
 
 
 
 // Inicia o servidor
 app.listen(3000, () => {
-  console.log("🚀 Servidor rodando em http://localhost:3000");
+  console.log(" Servidor rodando em http://localhost:3000");
 });

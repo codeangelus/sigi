@@ -50,12 +50,12 @@ export const excluir = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const maquina = await Peca.findByPk(id);
+    const maquina = await MaquinaModelo.findByPk(id);
     if (!maquina) 
-      return res.status(404).json({ error: "Peça não encontrada" });
+      return res.status(404).json({ error: "Maquina Modelo não encontrada" });
 
     await maquina.destroy();
-    res.json({ message: "Peça deletada com sucesso" });
+    res.json({ message: "Maquina Modelo deletada com sucesso" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -68,11 +68,11 @@ export const excluir = async (req, res) => {
 export const getById = async (req, res) => {
   try {
     const { id } = req.params;
-    const maquina = await Peca.findByPk(id);
+    const maquina = await MaquinaModelo.findByPk(id);
     if (!maquina) {
-      return res.status(404).json({ error: "Peça não encontrada" });
+      return res.status(404).json({ error: "Maquina Modelo não encontrada" });
     }
-    res.json(maquina); // retorna a peça encontrada
+    res.json(maquina); // retorna a Maquina Modelo encontrada
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

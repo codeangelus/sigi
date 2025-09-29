@@ -1,8 +1,8 @@
-import { Peca } from "../models/index.js";
+import { Peca,MaquinaProducao, MaquinaModelo } from "../models/index.js";
 
 
 //MÉTODOS:
-// criarPeca, listarPecas, atualizarPeca, deletarPeca , associarMaquina, listarPorId
+// criarPeca, listarPecas, atualizarPeca, deletarPeca , associarMaquina, listarPorId , associateToMachine
 
 
 // Criar uma peça
@@ -78,7 +78,45 @@ export const listarPorId = async (req, res) => {
   }
 };
 
-// Associar a uma maquina
-export const associarMaquina = async ( req , res) => {
+// Associa uma peça a uma máquina produção
+export const associateToProduction = async (req, res) => {
+  try {
+    const { pecaId, maquinaId } = req.body;
 
+    const peca = await Peca.findByPk(pecaId);
+    const maquina = await MaquinaProducao.findByPk(maquinaId);
+
+    if (!peca || !maquina) {
+      return res.status(404).json({ error: "Peça ou Máquina não encontrada" });
+    }
+
+    // Cria relação na tabela MaquinaProducaoPeca
+    await peca.addMaquinaProducao(maquina);
+
+    res.json({ message: "Peça associada à máquina com sucesso!" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+// Associa uma peça a uma máquina
+export const associateToMachine = async (req, res) => {
+  try {
+    const { pecaId, maquinaId } = req.body;
+
+    const peca = await Peca.findByPk(pecaId);
+    const maquina = await MaquinaModelo.findByPk(maquinaId);
+
+    if (!peca || !maquina) {
+      return res.status(404).json({ error: "Peça ou Máquina não encontrada" });
+    }
+
+    // Cria relação na tabela MaquinaProducaoPeca
+    await peca.addMaquinaModelo(maquina);
+
+    res.json({ message: "Peça associada à máquina com sucesso!" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };

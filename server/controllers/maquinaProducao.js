@@ -1,4 +1,4 @@
-import { MaquinaProducao } from "../models";
+import { MaquinaProducao } from "../models/index.js";
 
 //MÉTODOS:
 // create,update,getAll, getById, excluir
@@ -16,7 +16,7 @@ export const create = async (req, res) => {
   }
 };
 
-// Listar todas as peças
+// Listar todas as Maquina Produçãos
 export const getAll = async (req, res) => {
   try {
     const maquinas = await MaquinaProducao.findAll();
@@ -26,7 +26,7 @@ export const getAll = async (req, res) => {
   }
 };
 
-// Atualizar uma peça
+// Atualizar uma Maquina Produção
 export const update = async (req, res) => {
   try {
     const { id } = req.params;
@@ -44,17 +44,17 @@ export const update = async (req, res) => {
   }
 };
 
-// Deletar uma peça
+// Deletar uma Maquina Produção
 export const excluir = async (req, res) => {
   try {
     const { id } = req.params;
 
     const maquina = await MaquinaProducao.findByPk(id);
     if (!maquina) 
-      return res.status(404).json({ error: "Peça não encontrada" });
+      return res.status(404).json({ error: "Maquina Produção não encontrada" });
 
     await maquina.destroy();
-    res.json({ message: "Peça deletada com sucesso" });
+    res.json({ message: "Maquina Produção deletada com sucesso" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -69,9 +69,9 @@ export const getById = async (req, res) => {
     const { id } = req.params;
     const maquina = await MaquinaProducao.findByPk(id);
     if (!maquina) {
-      return res.status(404).json({ error: "Peça não encontrada" });
+      return res.status(404).json({ error: "Maquina Produção não encontrada" });
     }
-    res.json(maquina); // retorna a peça encontrada
+    res.json(maquina); // retorna a Maquina Produção encontrada
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
