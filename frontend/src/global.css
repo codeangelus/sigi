@@ -1,0 +1,189 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 20% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 215 20% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 217 100% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 210 20% 98%;
+
+    --sidebar-foreground: 222.2 47.4% 11.2%;
+
+    --sidebar-primary: 217 91% 60%;
+
+    --sidebar-primary-foreground: 210 40% 98%;
+
+    --sidebar-accent: 215 20% 96%;
+
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+
+    --sidebar-border: 215 20% 88%;
+
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 217 91% 60%;
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 223 36% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 223 36% 14%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Tipografia e layout base */
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+
+  /* Tipografia fluida (escala suave entre mobile e desktop) */
+  html {
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+      Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-size: clamp(14px, 1.1vw + 10px, 18px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply min-h-dvh antialiased;
+  }
+
+  /* Acessibilidade: respeitar preferência por menos animação */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Utilitários globais para reuso (container, grids, navbar) */
+@layer utilities {
+  /* Container padrão responsivo para páginas */
+  .container-page {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl w-full;
+  }
+
+  /* Grid responsivo de cards */
+  .grid-cards {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  /* Barra inferior fixa com centralização e safe-area (iOS) */
+  .bottom-nav {
+    @apply fixed inset-x-0 bottom-0 z-40 border-t bg-card/80 backdrop-blur
+           supports-[backdrop-filter]:bg-card/60
+           h-14 sm:h-16 flex items-center justify-evenly
+           px-2 sm:px-4;
+    padding-bottom: env(safe-area-inset-bottom); /* evita sobrepor gesture bar no iOS */
+  }
+
+  /* Classes utilitárias para títulos fluidos (opcional) */
+  .h1 { font-size: clamp(1.5rem, 2.5vw + 1rem, 2.5rem); line-height: 1.15; }
+  .h2 { font-size: clamp(1.25rem, 2vw + 0.75rem, 2rem); line-height: 1.2; }
+  .h3 { font-size: clamp(1.125rem, 1.5vw + 0.75rem, 1.5rem); line-height: 1.25; }
+
+  /* Evita overflow em layouts flex/grid (cards com textos longos) */
+  .shrink-text {
+    min-width: 0; /* importante em flex/grid */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* (Opcional) Scrollbar mais discreta no desktop */
+@layer utilities {
+  .scroll-slim {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+  .scroll-slim::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scroll-slim::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.4);
+    border-radius: 999px;
+  }
+}
+
