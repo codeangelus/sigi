@@ -52,7 +52,7 @@ export const excluir = async (req, res) => {
 
     const perfil = await Perfil.findByPk(id);
     if (!perfil) 
-      return res.status(404).json({ error: "Perfil  não encontrada" });
+      return res.status(404).json({ error: "Perfil  não encontrado" });
 
     await perfil.destroy();
     res.json({ message: "Perfil  deletada com sucesso" });

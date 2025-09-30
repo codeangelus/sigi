@@ -12,19 +12,19 @@ import {
 
 const router = express.Router();
 
-// POST /users → cria uma maquina produção
+// POST /prod → cria uma maquina produção
 router.post("/", create);
 
-// GET /users → lista todas os as maquinas produção
+// GET /prod → lista todas os as maquinas produção
 router.get("/", getAll);
 
-// GET /users/:id → lista a maquina produção por id
+// GET /prod/:id → lista a maquina produção por id
 router.get("/:id", getById);
 
-// PUT /users/:id → atualiza  a maquina produção
+// PUT /prod/:id → atualiza  a maquina produção
 router.put("/:id", update);
 
-// DELETE /users/:id → remove uma maquina produção
+// DELETE /prod/:id → remove uma maquina produção
 router.delete("/:id", excluir);
 
 export default router;

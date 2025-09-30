@@ -8,6 +8,7 @@ import MaquinaFinal from "./MaquinaFinal.js";
 import Peca from "./Peca.js";
 import MaquinaModelo from "./MaquinaModelo.js";
 import MaquinaProducao from "./MaquinaProducao.js";
+import MaquinaModeloPeca from "./MaquinaModeloPeca.js";
 
 // -------------------- RELAÇÕES -------------------- //
 
@@ -56,4 +57,5 @@ export {
   Peca,
   MaquinaModelo,
   MaquinaProducao,
+  MaquinaModeloPeca,
 };
