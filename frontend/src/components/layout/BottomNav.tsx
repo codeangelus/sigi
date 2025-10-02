@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { CalendarDays, KanbanSquare, PlusSquare, BarChart2, CopyPlus } from "lucide-react";
+import { CalendarDays, KanbanSquare, PlusSquare, BarChart2 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 import { cn } from "@/lib/utils";
 
@@ -14,13 +14,6 @@ export default function BottomNav() {
     <nav   className="fixed bottom-0 inset-x-0 w-full z-40 border-t bg-card/80 backdrop-blur
              supports-[backdrop-filter]:bg-card/60 bottom-nav">
       <div className={cn("mx-auto max-w-screen-md grid", isAdmin ? "grid-cols-4" : "grid-cols-3 ")}>
-        {isAdmin && (
-          /// NOVO PROJETO
-          <NavLink to="/new" className={({ isActive }) => cn(base, isActive && active)}>
-            <PlusSquare className="h-5 w-5" />
-            <span>Novo Projeto</span>
-          </NavLink>
-        )}
         {/* LISTA DVs  
         <NavLink to="/Dv" className={({ isActive }) => cn(base, isActive && active)}>
           <BarChart2 className="h-5 w-5" />

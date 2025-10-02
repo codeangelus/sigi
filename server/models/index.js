@@ -20,18 +20,27 @@ Usuario.belongsTo(Perfil, { foreignKey: "perfilId" });
 Dv.hasMany(MaquinaFinal, { foreignKey: "dvId" });
 MaquinaFinal.belongsTo(Dv, { foreignKey: "dvId" });
 
+
+
+
 // N:N Peca : MaquinaModelo
 Peca.belongsToMany(MaquinaModelo, {
-  through: "MaquinaModeloPeca",
+  through: { model: MaquinaModeloPeca, unique: false },
   foreignKey: "pecaId",
   otherKey: "maquinaModeloId"
 });
 
 MaquinaModelo.belongsToMany(Peca, {
-  through: "MaquinaModeloPeca",
+  through: { model: MaquinaModeloPeca, unique: false },
   foreignKey: "maquinaModeloId",
   otherKey: "pecaId"
 });
+
+
+
+
+
+
 
 // N:N Peca : MaquinaProducao
 Peca.belongsToMany(MaquinaProducao, {
@@ -39,6 +48,11 @@ Peca.belongsToMany(MaquinaProducao, {
   foreignKey: "pecaId",
   otherKey: "maquinaProducaoId"
 });
+
+
+
+
+
 
 MaquinaProducao.belongsToMany(Peca, {
   through: "MaquinaProducaoPeca",

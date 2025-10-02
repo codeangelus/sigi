@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-// POST /associate → cria perfil
+// POST /associate → cria associação peca com maquina modelo
 router.post("/", criarAssociacao);
 
 // GET /associate → lista todas os as peças associadas a um modelo

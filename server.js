@@ -25,7 +25,7 @@ app.use("/pecas", pecaRoutes);
 app.use("/dvs", dvRoutes);
 app.use("/users", usuarioRoutes);
 app.use("/maquinas", maquinaRoutes);
-app.use("/prod", MaquinaProducaoRoutes);''
+app.use("/prod", MaquinaProducaoRoutes);
 app.use("/associate",MaquinaPecaRoutes);
 
 // Rota de teste

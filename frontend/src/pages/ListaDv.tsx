@@ -2,6 +2,8 @@ import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import { PlusSquare } from "lucide-react";
+
 
 function pct(s: string) {
   const n = parseInt(s.replace("%", ""), 10);
@@ -20,6 +22,23 @@ export default function ListaDv() {
   const navigate = useNavigate();
   const [dvList, setDvList] = useState([]);
 
+
+
+    //Excluir dv 
+  const handleDelete = async (id: number) => {
+    if (!confirm(`Tem certeza que deseja excluir este DV ?`)) return;
+  
+    try {
+      await api.delete(`/dvs/${id}`);
+    
+      // Atualiza o estado removendo o item
+      setDvList(prev => prev.filter(dv => dv.id !== id));
+    } catch (err) {
+      console.error("Erro ao excluir DV:", err);
+      alert("Não foi possível excluir o DV");
+    }
+  };
+
   useEffect(() => {
     api.get("/dvs")
       .then(res => setDvList(res.data))
@@ -30,12 +49,22 @@ export default function ListaDv() {
     <div className="mx-auto max-w-screen-xl p-4">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-xl font-semibold tracking-tight text-slate-900">Lista de DVs</h1>
-        <button
-          onClick={() => navigate("/tracker")}
-          className="rounded-full px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
-        >
-          Ir para o Tracker
-        </button>
+
+        <div className="mx-5 flex items-center gap-3">
+          <button
+            onClick={() => navigate("/new")}
+            className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+          >
+            <PlusSquare className="h-4 w-4" /> Novo
+          </button>        
+
+          <button
+            className="rounded-full px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+            onClick={() => navigate("/tracker")}
+          >
+            Ir para o Tracker
+          </button>
+        </div>
       </div>
 
       {/* >>> SOMENTE CARDS <<< */}
@@ -56,7 +85,7 @@ export default function ListaDv() {
               <button
                 className="rounded-full p-1.5 hover:bg-red-50"
                 aria-label={`Excluir ${dv.numero}`}
-                onClick={() => alert(`Excluir ${dv.numero}`)}
+                onClick={() => handleDelete(dv.id)}
               >
                 <X className="h-4 w-4 text-red-500" />
               </button>

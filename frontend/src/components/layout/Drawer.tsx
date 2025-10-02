@@ -39,12 +39,6 @@ export const Drawer: React.FC<{ open: boolean; onClose: () => void }> = ({ open,
                 <nav>
                     <ul className="space-y-1 mt-4 grid-flow-col-1 gap-2">
                         <li>
-                            <NavLink to="/new" className={({ isActive }) => cn(base, isActive && active)}>
-                                <PlusSquare className="h-5 w-5" />
-                                <span>Novo Projeto</span>
-                            </NavLink>
-                        </li>
-                        <li>
                             <NavLink to="/dashboard" className={({ isActive }) => cn(base, isActive && active)}>
                                 <BarChart2 className="h-5 w-5" />
                                 <span>Dashboard</span>

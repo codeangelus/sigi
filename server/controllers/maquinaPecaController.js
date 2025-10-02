@@ -9,13 +9,17 @@ export const criarAssociacao = async (req, res) => {
   try {
     const { pecaId, maquinaModeloId, quantidade } = req.body;
 
-    const associacao = await MaquinaModeloPeca.create({
-      pecaId,
-      maquinaModeloId,
-      quantidade
-    });
+    const peca = await Peca.findByPk(pecaId);
+    const maquina = await MaquinaModelo.findByPk(maquinaModeloId);
 
-    res.status(201).json(associacao);
+    if (!peca || !maquina) {
+      return res.status(404).json({ error: "Peça ou Máquina não encontrada" });
+    }
+
+    
+    await peca.addMaquinaModelo(maquina, { through: { quantidade } });
+
+    res.status(201).json({ message: "Associação criada com sucesso!" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
